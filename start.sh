@@ -18,7 +18,7 @@ function initial()
 	echo "3 - exécuter un playbook"
 	echo "99 - exit"
 	echo ""
-	choix=$(zenity --width=320 --height=220 --entry --text="Que souhaitez vous faire?")
+	choix=$(zenity --width=320 --height=220 --list --column=numéro --column=option "1" "installation de paquets" "2" "ajouter un hôt"e "3" "exécuter un playbook" "99" "rien" --text="Que souhaitez vous faire?")
 	#read choix 
 	if [ $choix == 1 ]
 	then
@@ -139,9 +139,10 @@ function host()
 			if [ -e /etc/ansible/group_vars/windows.yml ]
 			then
 				echo "Voulez-vous donner un alias à votre machine ? [O/N]"
-				reponse=$(zenity --entry --text="Voulez vous donner un alias à votre machine?")
+				reponse=$(zenity --question --text="Voulez vous donner un alias à votre machine?")
 				#read reponse
-				if [ $reponse == "O" -o $reponse == "o" -o $reponse == "oui" -o $reponse == "Oui" -o $reponse == "OUI" ]
+				if [ $reponse == 0]
+				#if [ $reponse == "O" -o $reponse == "o" -o $reponse == "oui" -o $reponse == "Oui" -o $reponse == "OUI" ]
 				then
 					echo "Quel alias voulez-vous donner ?"
 					surnom=$(zenity --entry --text="Quel alias voulez-vous donner?")
@@ -215,9 +216,10 @@ function host()
 			else	
 				configWin
 				echo "Voulez-vous donner un alias à votre machine ? [O/N]"
-				reponse=$(zenity --entry --text="Voulez-vous donner un alias à votre machine?")
+				reponse=$(zenity --question --text="Voulez-vous donner un alias à votre machine?")
 			        #read reponse
-				if [ $reponse == "O" -o $reponse == "o" ]
+				if [ $reponse == 0 ]
+				#if [ $reponse == "O" -o $reponse == "o" ]
 				then 
 					echo "Quel alias voulez-vous donner ?"
 					surnom=$(zenity --entry --text="Quel alias voulez-vous donner?")
@@ -295,9 +297,10 @@ function host()
 				configLinux $host
 			fi
 			echo "Voulez-vous donner un alias à votre machine ? [O/N]"
-			reponse=$(zenity --entry --text="Voulez-vous donner un alias à votre machine?")
+			reponse=$(zenity --question --text="Voulez-vous donner un alias à votre machine?")
 			#read reponse
-			if [ $reponse == "O" -o $reponse == "o" ]
+			if [ $reponse == 0 ]
+			#if [ $reponse == "O" -o $reponse == "o" ]
 			then
 				echo "Quel alias voulez-vous donner ?"
 				surnom=$(zenity --entry --text="Quel alias voulez-vous donner?")
